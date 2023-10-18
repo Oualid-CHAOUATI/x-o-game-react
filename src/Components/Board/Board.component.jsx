@@ -6,13 +6,14 @@ export const Board = () => {
   const boardRef = useRef();
   const [role, setRole] = useState(ROLES.x);
   const [array, setArray] = useState([[], [], []]);
+  const [winner, setWinner] = useState(null);
   const restart = () => {
     setArray([[], [], []]);
     setRole(ROLES.x);
-
+    setWinner(null);
     boardRef.current.querySelectorAll("button").forEach((btn) => {
       btn.innerHTML = "";
-      btn.classList.remove("off");
+      btn.className = "";
     });
   };
 
@@ -85,13 +86,15 @@ export const Board = () => {
   };
 
   const clickHandler = ({ event, row, col }) => {
+    if (winner !== null) return;
     event.target.innerHTML = role;
-    event.target.classList.add("off");
+    event.target.classList.add(`off`);
+    event.target.classList.add(`${role}`);
     array[row - 1][col - 1] = role;
     console.log(array);
 
-    const winner = checkWinner(row - 1, col - 1);
-    if (winner) alert(role + " won");
+    const localWinner = checkWinner(row - 1, col - 1);
+    if (localWinner) setWinner(role);
 
     setArray([...array]);
     toggleRole();
@@ -106,6 +109,13 @@ export const Board = () => {
         <Row clickHandler={clickHandler} row={1} />
         <Row clickHandler={clickHandler} row={2} />
         <Row clickHandler={clickHandler} row={3} />
+      </div>
+
+      <div className={`${winner && "show"}  winner-wrapper`}>
+        <p>
+          Winner is
+          <span> {winner || " walid"}</span>
+        </p>
       </div>
     </div>
   );

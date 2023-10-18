@@ -2,20 +2,26 @@
   display: grid;
   gap: 1em;
   margin: auto;
-}
-div {
-  display: flex;
-  gap: inherit;
-  button {
-    $s: 3em;
-    height: $s;
-    width: $s;
-    display: inline-flex;
-    place-items: center;
+  div {
+    display: flex;
+    gap: inherit;
+    button {
+      $s: 3em;
+      height: $s;
+      width: $s;
+      display: inline-flex;
+      place-items: center;
 
-    &.off {
-      pointer-events: none;
-      opacity: 0.5;
+      &.off {
+        pointer-events: none;
+        opacity: 0.5;
+      }
+      &.x {
+        background-color: blue;
+      }
+      &.o {
+        background-color: rgb(106, 196, 103);
+      }
     }
   }
 }
@@ -27,5 +33,30 @@ div {
   .restart-btn {
     width: max-content;
     margin: auto;
+  }
+}
+
+.winner-wrapper {
+  p {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+  }
+  span {
+    $s: 2em;
+    border-radius: 0.5em;
+    height: $s;
+    display: inline-grid;
+    width: $s;
+    place-items: center;
+    background-color: rgb(60, 62, 192);
+  }
+  opacity: 1;
+  pointer-events: all;
+  &:not(.show) {
+    opacity: 0;
+    pointer-events: none;
   }
 }

@@ -1,0 +1,31 @@
+.board {
+  display: grid;
+  gap: 1em;
+  margin: auto;
+}
+div {
+  display: flex;
+  gap: inherit;
+  button {
+    $s: 3em;
+    height: $s;
+    width: $s;
+    display: inline-flex;
+    place-items: center;
+
+    &.off {
+      pointer-events: none;
+      opacity: 0.5;
+    }
+  }
+}
+
+.wrapper {
+  display: grid;
+
+  gap: 1em;
+  .restart-btn {
+    width: max-content;
+    margin: auto;
+  }
+}
